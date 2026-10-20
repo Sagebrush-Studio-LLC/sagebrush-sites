@@ -1,9 +1,9 @@
-# Sagebrush Sites
+# Sagebrush Studio LLC
 
-Website for **Sagebrush Sites**, a Fort Worth, Texas web-development studio that builds
+Website for **Sagebrush Studio LLC**, a Fort Worth, Texas web-development studio that builds
 warm, mobile-first sites for salons, barbers, nail studios, and spas.
 
-**Live site:** https://sagebrushsites.com/
+**Live site:** https://sagebrushstudiollc.com/
 
 ## What's in it
 

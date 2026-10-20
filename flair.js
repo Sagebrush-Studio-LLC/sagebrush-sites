@@ -1,4 +1,4 @@
-/* Sagebrush Sites: flair layer. Plain JavaScript, no dependencies.
+/* Sagebrush Studio LLC: flair layer. Plain JavaScript, no dependencies.
    Every effect is skipped for visitors who prefer reduced motion.
 
    Loaded with "defer" by the seven main pages only (not the case studies or

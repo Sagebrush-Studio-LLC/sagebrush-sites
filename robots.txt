@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://sagebrushsites.com/sitemap.xml
+Sitemap: https://sagebrushstudiollc.com/sitemap.xml
