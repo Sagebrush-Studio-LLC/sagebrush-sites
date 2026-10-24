@@ -98,8 +98,8 @@
   .nav-toggle { display: none; background: none; border: none; color: var(--ink); font-size: 1.4rem; cursor: pointer; padding: 6px 10px; }
 
   .mobile-menu { display: none; flex-direction: column; max-width: 1000px; margin: 10px auto 0; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
-  /* With seven links the full menu no longer fits below ~1020px, so the hamburger menu takes over there. */
-  @media (max-width: 1020px) { .mobile-menu.open { display: flex; } }
+  /* With seven links and the longer "Sites by Sagebrush Studio LLC" name, the full menu no longer fits below ~1100px, so the hamburger menu takes over there. */
+  @media (max-width: 1100px) { .mobile-menu.open { display: flex; } }
   .mobile-menu a { padding: 14px 20px; border-bottom: 1px solid var(--line); font-size: 0.92rem; color: var(--ink-soft); }
   .mobile-menu a.active { color: var(--rust); font-weight: 600; }
   .mobile-menu a:last-child { border-bottom: none; }
@@ -240,7 +240,7 @@
   footer .footer-logo { width: 40px; height: 40px; margin: 0 auto 10px; border-radius: 50%; }
   footer .sig { font-family: Georgia, Palatino, serif; font-style: italic; font-size: 1.05rem; color: var(--rust); margin-bottom: 6px; }
 
-  @media (max-width: 1020px) {
+  @media (max-width: 1100px) {
     .nav-links { display: none; }
     .nav-toggle { display: block; }
   }
@@ -576,6 +576,14 @@
   .brand { font-size: 1.05rem; gap: 6px; }
   .nav-cta { padding: 8px 13px; }
   .nav-toggle { padding: 6px 6px; }
+}
+
+/* On phones narrower than ~580px the longer brand name leaves no room for the "Get in touch" button; Contact stays in the menu and the floating quote button. */
+@media (max-width: 580px) {
+  .nav-cta { display: none; }
+}
+@media (max-width: 360px) {
+  .brand { font-size: 0.9rem; }
 }
 
 /* ---------- Hero: word-by-word headline ---------- */

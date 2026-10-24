@@ -54,7 +54,7 @@
   main > section.wrap + section.wrap { padding-top: 56px; padding-bottom: 8px; }
 
   /* Package cards */
-  .tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 28px; max-width: 880px; margin: 0 auto; }
+  .tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 28px; max-width: 880px; margin: 0 auto; }
   .tier { position: relative; display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 36px 30px 30px; }
   .tier.featured { border: 1.5px solid var(--terracotta); box-shadow: 0 24px 40px -30px rgba(168, 73, 43, 0.5); }
   .tier-flag { position: absolute; top: -13px; left: 30px; background: var(--rust); color: #fff8f0; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 14px; border-radius: 999px; }
@@ -117,7 +117,7 @@
   <nav class="pill">
     <a href="./" class="brand">
       <picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" alt="Sagebrush Studio LLC logo" class="brand-logo" width="28" height="28"></picture>
-      Sagebrush <span>Sites</span>
+      <span>Sites</span> by Sagebrush Studio LLC
     </a>
     <div class="nav-links" id="nav-links">
       <a href="work.html">Work</a>
