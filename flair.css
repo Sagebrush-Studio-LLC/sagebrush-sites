@@ -83,7 +83,10 @@
   nav.pill { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
 
   .brand { display: flex; align-items: center; gap: 8px; font-family: Georgia, Palatino, serif; font-style: italic; font-size: 1.2rem; white-space: nowrap; }
-  .brand span { color: var(--rust); }
+  /* Brand name stacks: "Sites" on top, then a smaller cursive "by Sagebrush Studio LLC" underneath. The cursive uses fonts already on the visitor's device (no web font to download); "cursive" is the last fallback. */
+  .brand-text { display: flex; flex-direction: column; line-height: 1.05; }
+  .brand-main { color: var(--rust); }
+  .brand-by { font-family: "Segoe Script", "Snell Roundhand", "Apple Chancery", "Brush Script MT", "Lucida Handwriting", cursive; font-style: normal; font-size: 0.66em; color: var(--ink-soft); margin-top: 2px; letter-spacing: 0.01em; }
   .brand-logo { border-radius: 50%; flex-shrink: 0; }
 
   .nav-links { display: flex; align-items: center; gap: 4px; font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
@@ -98,8 +101,8 @@
   .nav-toggle { display: none; background: none; border: none; color: var(--ink); font-size: 1.4rem; cursor: pointer; padding: 6px 10px; }
 
   .mobile-menu { display: none; flex-direction: column; max-width: 1000px; margin: 10px auto 0; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
-  /* With seven links and the longer "Sites by Sagebrush Studio LLC" name, the full menu no longer fits below ~1100px, so the hamburger menu takes over there. */
-  @media (max-width: 1100px) { .mobile-menu.open { display: flex; } }
+  /* With seven links the full menu no longer fits below ~1020px, so the hamburger menu takes over there. */
+  @media (max-width: 1020px) { .mobile-menu.open { display: flex; } }
   .mobile-menu a { padding: 14px 20px; border-bottom: 1px solid var(--line); font-size: 0.92rem; color: var(--ink-soft); }
   .mobile-menu a.active { color: var(--rust); font-weight: 600; }
   .mobile-menu a:last-child { border-bottom: none; }
@@ -240,7 +243,7 @@
   footer .footer-logo { width: 40px; height: 40px; margin: 0 auto 10px; border-radius: 50%; }
   footer .sig { font-family: Georgia, Palatino, serif; font-style: italic; font-size: 1.05rem; color: var(--rust); margin-bottom: 6px; }
 
-  @media (max-width: 1100px) {
+  @media (max-width: 1020px) {
     .nav-links { display: none; }
     .nav-toggle { display: block; }
   }
@@ -578,12 +581,12 @@
   .nav-toggle { padding: 6px 6px; }
 }
 
-/* On phones narrower than ~580px the longer brand name leaves no room for the "Get in touch" button; Contact stays in the menu and the floating quote button. */
-@media (max-width: 580px) {
-  .nav-cta { display: none; }
+/* Narrow phones: shrink the stacked brand name a little, and drop the header button on the very smallest screens (Contact stays in the menu and the floating quote button). */
+@media (max-width: 380px) {
+  .brand { font-size: 0.85rem; }
 }
-@media (max-width: 360px) {
-  .brand { font-size: 0.9rem; }
+@media (max-width: 350px) {
+  .nav-cta { display: none; }
 }
 
 /* ---------- Hero: word-by-word headline ---------- */
