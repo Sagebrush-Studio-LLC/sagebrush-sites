@@ -1,0 +1,19 @@
+# Runs the site checks (scripts/check-site.mjs) on every push to main and on every pull request.
+# Plain Node with nothing to install. A red X here means a check failed: open the run to see which.
+name: Site checks
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run site checks
+        run: node scripts/check-site.mjs

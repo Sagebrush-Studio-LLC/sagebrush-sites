@@ -35,6 +35,43 @@
     --mustard: #d3a13f;
     --radius: 22px;
     --radius-sm: 12px;
+    /* Roles that used to be hard-coded colours, named so dark mode can swap them. */
+    --rust-fill: #a8492b;          /* solid fill behind light text (buttons, flags) */
+    --rust-hover: #8a3b21;         /* hover colour for rust links */
+    --danger: #9c2b27;             /* form errors */
+    --ink-muted: #6f5b4e;          /* small secondary text */
+    --header-bg: rgba(250, 243, 234, 0.88);   /* frosted sticky header */
+    --glass: rgba(255, 253, 249, 0.94);       /* small tags over photos */
+    --glass-band: rgba(250, 243, 234, 0.95);  /* call-to-action card over the photo band */
+    --field-bg: #fff;              /* text fields */
+  }
+
+  /* Dark mode: follows the visitor's device setting (no switch, nothing stored).
+     Only the colour names change; every rule below keeps using them. Text pairs were
+     checked for WCAG AA contrast (4.5:1 or better). The browser and phone mockups on
+     the Home and Work pages stay light on purpose: they are pictures of a website. */
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --cream: #1b1613;
+      --cream-deep: #2a211c;
+      --panel: #241d19;
+      --ink: #f3e8dc;
+      --ink-soft: #c7b8aa;
+      --line: #3e332b;
+      --terracotta: #e0865f;
+      --rust: #ec9873;
+      --sage: #9aab84;
+      --sage-deep: #a9bb92;
+      --mustard: #d9aa4d;
+      --rust-hover: #f5b494;
+      --danger: #ff9b92;
+      --ink-muted: #bdad9e;
+      --header-bg: rgba(27, 22, 19, 0.88);
+      --glass: rgba(36, 29, 25, 0.94);
+      --glass-band: rgba(27, 22, 19, 0.95);
+      --field-bg: #17120f;
+    }
   }
 
   /* Reset: padding is included in element widths and default margins are removed. */
@@ -73,12 +110,24 @@
     border-radius: 4px;
   }
 
+  /* "Skip to content" link: hidden above the page until a keyboard user tabs to it. */
+  .skip-link {
+    position: absolute; left: 12px; top: -64px; z-index: 300;
+    background: var(--rust-fill); color: #fff8f0;
+    padding: 10px 18px; border-radius: 999px;
+    font-size: 0.9rem; font-weight: 600;
+    transition: top 0.15s ease;
+  }
+  .skip-link:focus { top: 12px; }
+  /* The skip link moves focus to <main>; no focus ring is needed on a whole page region. */
+  main:focus { outline: none; }
+
   .accent-serif { font-family: Georgia, "Iowan Old Style", Palatino, serif; font-style: italic; color: var(--rust); }
 
   .icon { color: var(--terracotta); flex-shrink: 0; }
 
   /* ---------- Nav ---------- */
-  header { position: sticky; top: 0; z-index: 100; padding: 18px 24px; background: rgba(250, 243, 234, 0.88); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  header { position: sticky; top: 0; z-index: 100; padding: 18px 24px; background: var(--header-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
 
   nav.pill { max-width: 1000px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
 
@@ -96,7 +145,7 @@
   .nav-links a.active { background: var(--cream-deep); color: var(--rust); }
 
   .nav-cta { border: 1.5px solid var(--terracotta); color: var(--rust); padding: 9px 18px; border-radius: 999px; font-size: 0.82rem; font-weight: 600; white-space: nowrap; }
-  .nav-cta:hover { background: var(--rust); color: #fff8f0; }
+  .nav-cta:hover { background: var(--rust-fill); color: #fff8f0; }
 
   .nav-toggle { display: none; background: none; border: none; color: var(--ink); font-size: 1.4rem; cursor: pointer; padding: 6px 10px; }
 
@@ -130,7 +179,7 @@
   .hero-ctas { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 
   .btn { display: inline-block; padding: 13px 28px; border-radius: 999px; font-size: 0.92rem; letter-spacing: 0.02em; border: 1.5px solid var(--terracotta); }
-  .btn-primary { background: var(--rust); border-color: var(--rust); color: #fff8f0; } /* deeper fill so white text has AA contrast */
+  .btn-primary { background: var(--rust-fill); border-color: var(--rust-fill); color: #fff8f0; } /* deeper fill so white text has AA contrast */
   .btn-primary:hover { background: #8a3b21; border-color: #8a3b21; }
   .btn-ghost { background: transparent; color: var(--rust); }
   .btn-ghost:hover { background: var(--cream-deep); }
@@ -241,6 +290,9 @@
   /* ---------- Footer ---------- */
   footer { padding: 36px 0; text-align: center; font-size: 0.88rem; color: var(--ink-soft); border-top: 1px solid var(--line); margin-top: 20px; }
   footer .footer-logo { width: 40px; height: 40px; margin: 0 auto 10px; border-radius: 50%; }
+  footer .footer-links { margin-top: 4px; font-size: 0.85rem; }
+  footer .footer-links a { color: var(--ink-soft); border-bottom: 1px solid var(--line); }
+  footer .footer-links a:hover { color: var(--rust); border-bottom-color: var(--rust); }
   footer .sig { font-family: Georgia, Palatino, serif; font-style: italic; font-size: 1.05rem; color: var(--rust); margin-bottom: 6px; }
 
   @media (max-width: 1020px) {
@@ -271,7 +323,7 @@
 .process-card { transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease; }
 .process-card:hover { transform: translateY(-5px); border-color: var(--terracotta); box-shadow: 0 18px 30px -22px rgba(168, 73, 43, 0.5); }
 .process-card .num-circle { transition: background 0.25s ease, color 0.25s ease; }
-.process-card:hover .num-circle { background: var(--rust); border-color: var(--rust); color: #fff8f0; }
+.process-card:hover .num-circle { background: var(--rust-fill); border-color: var(--rust-fill); color: #fff8f0; }
 
 .skill-chip, .fact, .social-pill { transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; }
 .skill-chip:hover, .fact:hover { transform: translateY(-2px); border-color: var(--terracotta); box-shadow: 0 10px 18px -14px rgba(168, 73, 43, 0.5); }
@@ -384,6 +436,7 @@
   white-space: nowrap;
   text-overflow: ellipsis;
   background: #fff8f0;
+  color: #6f5d50; /* fixed: the mockup stays light in dark mode, so its address text must stay dark */
   border-radius: 999px;
 }
 .browser img { width: 100%; height: auto; }
@@ -404,7 +457,7 @@
   position: absolute;
   left: 16px;
   bottom: 12px;
-  background: rgba(255, 253, 249, 0.94);
+  background: var(--glass);
   color: var(--rust);
   font-size: 0.74rem;
   font-weight: 600;
@@ -643,7 +696,7 @@
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
-.carousel-btn:hover { background: var(--rust); border-color: var(--rust); color: #fff8f0; transform: translateY(-2px); }
+.carousel-btn:hover { background: var(--rust-fill); border-color: var(--rust-fill); color: #fff8f0; transform: translateY(-2px); }
 .carousel-dots { display: flex; }
 .carousel-dot { position: relative; width: 26px; height: 26px; padding: 0; border: 0; background: none; cursor: pointer; }
 .carousel-dot::before {
@@ -682,7 +735,7 @@
   z-index: 150;
   padding: 12px 20px;
   border-radius: 999px;
-  background: var(--rust);
+  background: var(--rust-fill);
   color: #fff8f0;
   font-size: 0.9rem;
   font-weight: 600;
@@ -725,7 +778,7 @@
   padding: 34px 32px 36px;
   transform: translate(-50%, -50%);
   text-align: center;
-  background: rgba(250, 243, 234, 0.95);
+  background: var(--glass-band);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.7);
@@ -750,10 +803,29 @@
    they do not rely on colour alone. */
 #contact-form[hidden] { display: none; }
 #contact-form input[aria-invalid="true"],
-#contact-form textarea[aria-invalid="true"] { border-color: #9c2b27; }
-.form-error { margin: 0; color: #9c2b27; font-size: 0.9rem; font-weight: 600; }
+#contact-form textarea[aria-invalid="true"] { border-color: var(--danger); }
+.form-error { margin: 0; color: var(--danger); font-size: 0.9rem; font-weight: 600; }
 .form-error[hidden] { display: none; }
 .form-actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .form-status { margin: 0; min-height: 1.4em; font-size: 0.85rem; color: var(--ink-soft); }
 .contact-info dd a { color: var(--rust); border-bottom: 1px solid var(--terracotta); }
-.contact-info dd a:hover { color: #8a3b21; }
+.contact-info dd a:hover { color: var(--rust-hover); }
+
+/* ---------- Print: pages print clean on white, with nothing hidden or animated ---------- */
+@media print {
+  /* Colours: always black on white, whatever the device's dark/light setting */
+  :root {
+    --cream: #fff; --cream-deep: #f4f0ea; --panel: #fff; --ink: #000; --ink-soft: #333;
+    --ink-muted: #333; --line: #bbb; --rust: #7a2e17; --terracotta: #7a2e17; --sage-deep: #333;
+    --header-bg: #fff; --glass: #fff; --glass-band: #fff; --field-bg: #fff;
+  }
+  body { background: #fff; background-image: none; }
+  /* Page chrome that makes no sense on paper */
+  header, .mobile-menu, .skip-link, .quote-fab, .scroll-progress, .photo-band, .sprig, .hero-ctas { display: none !important; }
+  /* Scroll-reveal content starts invisible; make sure it is visible when printing */
+  .reveal { opacity: 1 !important; transform: none !important; }
+  /* Keep cards and answers whole instead of splitting across pages */
+  .tier, .process-card, .terms-card, .first-client, details, .work-card { break-inside: avoid; }
+  a { color: #000; }
+  footer { border-top: 1px solid #bbb; }
+}

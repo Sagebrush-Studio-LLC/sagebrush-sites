@@ -47,6 +47,8 @@
 <link rel="apple-touch-icon" href="images/logo.png">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#c1653f">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#1b1613" media="(prefers-color-scheme: dark)">
 <!-- Shared stylesheet: base styles and effects for every main page. It loads before any page-specific style block below so that page can override it -->
 <link rel="stylesheet" href="flair.css">
 <style>
@@ -57,7 +59,7 @@
   .tier-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 28px; max-width: 880px; margin: 0 auto; }
   .tier { position: relative; display: flex; flex-direction: column; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 36px 30px 30px; }
   .tier.featured { border: 1.5px solid var(--terracotta); box-shadow: 0 24px 40px -30px rgba(168, 73, 43, 0.5); }
-  .tier-flag { position: absolute; top: -13px; left: 30px; background: var(--rust); color: #fff8f0; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 14px; border-radius: 999px; }
+  .tier-flag { position: absolute; top: -13px; left: 30px; background: var(--rust-fill); color: #fff8f0; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 14px; border-radius: 999px; }
   .tier h3 { font-size: 1.4rem; margin-bottom: 4px; }
   .tier .for { color: var(--ink-soft); font-size: 0.92rem; margin-bottom: 20px; }
   @media (min-width: 700px) { .tier .for { min-height: 3.3em; } } /* two lines, so both prices line up */
@@ -108,9 +110,20 @@
     .addon-list { padding: 4px 18px; }
     .first-client { padding: 30px 20px; }
   }
+  /* Printing or saving as PDF: a letterhead line with how to reach me, every FAQ answer open */
+  .print-only { display: none; }
+  @media print {
+    .print-only { display: block; margin: 0 0 18px; padding-bottom: 10px; border-bottom: 1px solid #bbb; font-size: 0.85rem; color: #333; }
+    .print-only strong { font-size: 1.05rem; color: #000; }
+    .tier-grid, .terms-grid { gap: 14px; }
+    .tier { box-shadow: none !important; border: 1px solid #999 !important; }
+  }
 </style>
 </head>
 <body>
+
+<!-- Keyboard users: first Tab shows this link, which jumps past the menu to the page content -->
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- Site header: brand, page links, "Get in touch" button, and the mobile menu -->
 <header>
@@ -143,7 +156,9 @@
 </header>
 
 <!-- Page content -->
-<main>
+<main id="main" tabindex="-1">
+  <!-- Shown only when printing or saving as PDF -->
+  <p class="print-only"><strong>Sagebrush Studio LLC</strong> &middot; Pricing &middot; sagebrushstudiollc.com &middot; (682) 491-6722 &middot; michellefeliciano@sagebrushstudiollc.com<br>Starting prices; every project gets a written quote before work begins.</p>
   <!-- Page heading -->
   <section class="page-hero wrap">
     <p class="eyebrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 12l9-9h8v8l-9 9z"/><circle cx="16" cy="8" r="1.4"/></svg> Pricing</p>
@@ -296,6 +311,7 @@
   <picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" alt="Sagebrush Studio LLC logo" class="footer-logo"></picture>
   <p class="sig">Sagebrush Studio LLC</p>
   <p>&copy; 2026 Sagebrush Studio, LLC &middot; Fort Worth, Texas &middot; Founded by Michelle Feliciano</p>
+  <p class="footer-links"><a href="privacy.html">Privacy</a></p>
 </footer>
 
 <!-- Mobile menu behaviour (inline so every page works on its own) -->
@@ -332,5 +348,19 @@
 
 <!-- Shared effects: scroll reveals, carousel, quote button, forms (see flair.js) -->
 <script src="flair.js" defer></script>
+
+<!-- Printing: FAQ answers are folded away on screen, so open them all for the printout and restore them afterwards -->
+<script>
+  (function () {
+    var opened = [];
+    window.addEventListener('beforeprint', function () {
+      document.querySelectorAll('details:not([open])').forEach(function (d) { d.open = true; opened.push(d); });
+    });
+    window.addEventListener('afterprint', function () {
+      opened.forEach(function (d) { d.open = false; });
+      opened = [];
+    });
+  })();
+</script>
 </body>
 </html>

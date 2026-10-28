@@ -47,6 +47,8 @@
 <link rel="apple-touch-icon" href="images/logo.png">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#c1653f">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#1b1613" media="(prefers-color-scheme: dark)">
 <!-- Shared stylesheet: base styles and effects for every main page. It loads before any page-specific style block below so that page can override it -->
 <link rel="stylesheet" href="flair.css">
 <style>
@@ -54,9 +56,9 @@
   .check-promo { padding: 20px 0 60px; }
   .check-promo-card { max-width: 860px; margin: 0 auto; background: var(--panel); border: 1px solid var(--line); border-radius: var(--radius); padding: 34px 32px; display: flex; align-items: center; justify-content: space-between; gap: 26px; flex-wrap: wrap; }
   .check-promo-card .copy { flex: 1 1 380px; }
-  .check-promo-card .eyebrow { display: inline-flex; font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase; color: #5c6b49; margin-bottom: 10px; }
+  .check-promo-card .eyebrow { display: inline-flex; font-size: 0.76rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--sage-deep); margin-bottom: 10px; }
   .check-promo-card h2 { font-size: clamp(1.4rem, 3vw, 1.8rem); font-weight: 400; margin-bottom: 8px; }
-  .check-promo-card p { color: #6f5b4e; font-size: 0.96rem; }
+  .check-promo-card p { color: var(--ink-muted); font-size: 0.96rem; }
 </style>
 <!-- Structured data (schema.org) so search engines can show the business name, area, and profiles -->
 <script type="application/ld+json">
@@ -96,6 +98,9 @@
 </head>
 <body>
 
+<!-- Keyboard users: first Tab shows this link, which jumps past the menu to the page content -->
+<a class="skip-link" href="#main">Skip to content</a>
+
 <!-- Site header: brand, page links, "Get in touch" button, and the mobile menu -->
 <header>
   <nav class="pill">
@@ -126,7 +131,7 @@
   </div>
 </header>
 
-<main id="top">
+<main id="main" tabindex="-1">
 
   <!-- ---------- Hero ---------- -->
   <section class="hero wrap">
@@ -306,6 +311,7 @@
   <picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" alt="Sagebrush Studio LLC logo" class="footer-logo"></picture>
   <p class="sig">Sagebrush Studio LLC</p>
   <p>&copy; 2026 Sagebrush Studio, LLC &middot; Fort Worth, Texas &middot; Founded by Michelle Feliciano</p>
+  <p class="footer-links"><a href="privacy.html">Privacy</a></p>
 </footer>
 
 <!-- Mobile menu behaviour (inline so every page works on its own) -->

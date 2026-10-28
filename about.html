@@ -46,10 +46,15 @@
 <link rel="apple-touch-icon" href="images/logo.png">
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#c1653f">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#1b1613" media="(prefers-color-scheme: dark)">
 <!-- Shared stylesheet: base styles and effects for every main page. It loads before any page-specific style block below so that page can override it -->
 <link rel="stylesheet" href="flair.css">
 </head>
 <body>
+
+<!-- Keyboard users: first Tab shows this link, which jumps past the menu to the page content -->
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- Site header: brand, page links, "Get in touch" button, and the mobile menu -->
 <header>
@@ -82,7 +87,7 @@
 </header>
 
 <!-- Page content -->
-<main>
+<main id="main" tabindex="-1">
   <!-- About: founder photo (in an arch-shaped frame), the story, and key facts -->
   <section class="wrap" style="padding-top: 60px;">
     <div class="about-grid">
@@ -107,6 +112,7 @@
   <picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.png" alt="Sagebrush Studio LLC logo" class="footer-logo"></picture>
   <p class="sig">Sagebrush Studio LLC</p>
   <p>&copy; 2026 Sagebrush Studio, LLC &middot; Fort Worth, Texas &middot; Founded by Michelle Feliciano</p>
+  <p class="footer-links"><a href="privacy.html">Privacy</a></p>
 </footer>
 
 <!-- Mobile menu behaviour (inline so every page works on its own) -->
